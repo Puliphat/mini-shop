@@ -6,6 +6,7 @@ const cart = {};
 // อัพเดทตะกร้าสินค้า
 const updateCart = () => {
   let totolPrice = 0;
+  
    
  // ลบ child อันเก่าทิ้งเพราะตอนต่อเข้าไปใหม่มันมีค่าเก่าเข้ามาด้วย
  document.querySelector("#cartSummary_items").replaceChildren([]);
@@ -136,16 +137,21 @@ const hookViewCart = () => {
 
 // เชื่อม API
 const fetchProduct = () => {
-  fetch("https://dummyjson.com/products?limit=32&skip=87&select=title,price,thumbnail")
+  fetch('https://fakestoreapi.com/products')
     .then((res) => res.json())
     .then((productResponse) => {
-      products = productResponse.products;
+      products = productResponse; 
 
       products.forEach((product) => {
-        createCard(product);
+        // เปลี่ยนจาก dummy มาใช้ fakestore แก้ฟิล img
+        createCard({
+          ...product,
+          thumbnail: product.image
+        });
       });
     });
 };
+
 
 fetchProduct();
 hookViewCart();
