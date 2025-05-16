@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     font-family: "Anuphan","Open Sans", sans-serif;
@@ -8,6 +9,7 @@ html, body {
     margin: 0;
 }
 
+
 nav {
     position: sticky;
     top: 0;
@@ -17,6 +19,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 100;
 }
 
 .Icon{
@@ -34,43 +37,113 @@ nav {
     border: 1px solid #1a2835de;
     border-radius: 8px;
     display: none;
-
-    table {
-        th {
-           font-weight: 600px;
-        }
-        th,td {
-            min-width: 100px;
-            text-align: center;
-        }
-    }
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
 }
 
+#cartSummary table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#cartSummary th {
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    padding: 8px;
+}
+
+#cartSummary td {
+    min-width: 100px;
+    text-align: center;
+    padding: 8px;
+}
+
+/* --- ส่วนแสดงสินค้า --- */
 #productList{
     display: grid;
     max-width: 1240px;
-    margin: 5em auto;
+    margin: 2em auto;
     padding: 0 2em;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2em;
 }
 
+/* --- การ์ดสินค้า --- */
+.productCard {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+}
+
+.productCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+}
+
 .productThumbnail{
-    height: 300px;
+    height: 280px;
     width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+    object-fit: contain;
+    padding: 20px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+}
+
+.productCard:hover .productThumbnail {
+    transform: scale(1.05);
 }
 
 .productBottomSheet{
     display: flex;
     justify-content: space-between;
+    padding: 1em;
+    align-items: center;
+}
+
+.productInfo {
+    flex-grow: 1;
 }
 
 .productName{
-    margin-top: 1em;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
     display: block;
+    font-size: 1em;
+    color: #333;
 }
+
+.productPrice {
+    font-weight: bold;
+    color: #e63946;
+    font-size: 1.1em;
+}
+
+/* --- ปุ่มเพิ่มสินค้า --- */
+button.addToCart {
+    background-color: rgb(35, 143, 245);
+    border-radius: 6px;
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+button.addToCart:hover {
+    cursor: pointer;
+    background-color: rgb(26, 243, 153);
+    transform: scale(1.05);
+}
+
 
 button{
     background-color: rgb(35, 143, 245);
@@ -79,31 +152,32 @@ button{
     color: white;
     padding: 0.8em 1.8em;
     font-size: 16px;
-
-    &:hover {
-        cursor: pointer;
-        background-color: rgb(26, 243, 153);
-    }
+    transition: background-color 0.3s ease;
 }
 
-.buttonWrapper {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-
-    .clearButton{
-        background-color: rgb(230, 28, 28);
-        opacity: 0.8;
-        padding: 0.7em 1.7em ;
-    }
+button:hover {
+    cursor: pointer;
+    background-color: rgb(26, 243, 153);
 }
 
+/* --- รูปภาพหลัก --- */
 #wallpaperPage{
     width: 100%;   
-    max-height: 700px; 
+    max-height: 500px; 
     height: auto;      
-    object-fit: cover; 
+    object-fit: cover;
+    margin-bottom: 20px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f5f5f5;
 }
+
+#wallpaperImg {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
 
 footer{
     background-color: rgb(0, 0, 0);
@@ -113,10 +187,33 @@ footer{
     color: rgb(255, 255, 255);
     font-size: 8px;
     letter-spacing: 2px;
+    padding: 15px 0;
 }
+
+
+/* --- แจ้งเตือน --- */
+#notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
 
 @media (max-width: 750px) {
     #wallpaperPage {
       display: none;
     }
-  }
+}
+
+@media (max-width: 500px) {
+    .productList {
+        grid-template-columns: 1fr;
+    }
+}

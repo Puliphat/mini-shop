@@ -18,43 +18,33 @@
 </head>
 
 <body>
-    <!-- navbar -->
+
     <nav>
         <div class="Icon">
             <h1 class="fa-solid fa-store"> MINI SHOP</h1>
         </div>
         <div>
-            <button id="viewCart">ตะกร้าสินค้า</button>
-            <div id="cartSummary">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ชื่อสินค้า</th>
-                            <th>จำนวน</th>
-                            <th>ราคา</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartSummary_items">
-                    </tbody>
-                    <tfoot>
-                        <th colspan="2">ราคารวม</th>
-                        <td id="cartSummary_total"></td>
-                    </tfoot>
-                </table>
-            </div>
+            <a href="cart.html"><button id="viewCart"><i class="fa-solid fa-cart-shopping"></i> ตะกร้าสินค้า <span id="cartBadge">0</span></button></a>
         </div>
     </nav>
-     <main>
-        <section id="wallpaperPage">
-        <img  id="wallpaperPage" src="https://www.ghibli.jp/gallery/totoro038.jpg" alt="รูปภาพ">
-        </section>
-         <!-- main js webpage -->
-        <section id="productList">
-        </section>
-     </main>
-     <footer>
-        <h1>© 2025 NextGen Shop, All rights reserved.</h1>
-      </footer>
+    <main>
+ 
+        <div id="homePage">
+            <section id="wallpaperPage">
+                <img id="wallpaperImg" src="https://www.ghibli.jp/gallery/totoro038.jpg" alt="รูปภาพ">
+            </section>
+
+            <section id="productList">
+                <!-- สินค้าจะถูกเพิ่มที่นี่ด้วย JavaScript -->
+            </section>
+        </div>
+    </main>
+    <footer>
+        <h1>© 2025 Mini Shop, All rights reserved.</h1>
+    </footer>
+    
+   
+    <div id="notification" style="display: none;"></div>
 </body>
 
 </html>
